@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Toolbar from './Toolbar/Toolbar';
-import SideDrawer from './SideDrawer/SideDrawer';
-import BackDrop from './BackDrop/BackDrop';
+import Toolbar from './Header/Toolbar/Toolbar';
+import SideDrawer from './Header/SideDrawer/SideDrawer';
+import BackDrop from './Header/BackDrop/BackDrop';
+import Main from './Main/Main';
 
 export default class App extends Component {
   state = {
@@ -25,13 +26,12 @@ export default class App extends Component {
     //   let BackDrop = <BackDrop />;
     // }
     return (
-      <div style={{ height: '100%' }}>
+      <div className="wrapper">
         <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
         {sideDrawerOpen && <BackDrop click={this.backDropClickHandler} />}
         <SideDrawer show={sideDrawerOpen} />
-        <main style={{ marginTop: '63px' }}>
-          <p>This is page content</p>
-        </main>
+
+        <Main />
       </div>
     );
   }

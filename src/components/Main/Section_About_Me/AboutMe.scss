@@ -1,0 +1,56 @@
+.aboutme {
+  background-image: url(../../../assets/banner-photo.jpg);
+  height: 600px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__container {
+    box-sizing: border-box;
+    max-width: 560px;
+    height: 70%;
+    margin: 0 0 0 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
+    color: #ffffff;
+    padding-right: 30px;
+  }
+
+  &__button {
+    margin: 0;
+  }
+
+  .mobile {
+    display: none;
+  }
+
+  @media (max-width: 728px) {
+    background-position: center;
+    height: 400px;
+
+    .aboutme {
+
+      &__container {
+        align-items: center;
+        text-align: center;
+        height: 70%;
+      }
+    }
+
+    .mobile {
+      display: block;
+    }
+
+    .desktop {
+      display: none;
+    }
+
+  }
+
+
+}

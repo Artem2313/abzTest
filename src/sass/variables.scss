@@ -7,31 +7,3 @@ $primary-color: #ef5b4c;
 $secondary-color:#007bff;
 $background-color: #fff;
 $background-color-2: #f9f9f3;
-
-/*TYPOGRAPHY_HEADING*/
-%heading_1_desktop {
-  font-size: 50;
-  line-height: 54;
-}
-
-%heading_1_tablet {
-  font-size: 40;
-  line-height: 44;
-}
-
-%heading_1_mobile {
-  font-size: 30;
-  line-height: 34;
-}
-
-%heading_2 {
-  font-size: 24;
-  line-height: 29;
-}
-
-/*TYPOGRAPHY_PARAGRAPH*/
-
-%paragraph {
-  font-size: 16;
-  line-height: 24;
-}

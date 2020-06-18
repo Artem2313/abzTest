@@ -1,0 +1,10 @@
+.imageDiv {
+
+  width: 15px;
+  height: 15px;
+
+
+  &::before {
+    content: attr(imageData)
+  }
+}

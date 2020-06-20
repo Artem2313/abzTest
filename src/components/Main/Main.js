@@ -5,18 +5,30 @@ import * as API from '../../service/api';
 import Users from './Section_Users/Users';
 import Form from './Section_Register/Register';
 import Modal from '../shared/Modal';
+import { successMessage, failMessage } from '../shared/Modal.json';
 
 export default class Main extends Component {
   state = {
     users: [],
     positions: [],
+    countUsers: 6,
+    stepUsers: 6,
+    totalUsers: 0,
+    isMobile: window.innerWidth < 768,
     RegisterSuccess: false,
     RegisterError: false,
   };
 
   componentDidMount() {
-    API.fetchUsers().then(response => {
-      this.setState({ users: response.data.users });
+    if (this.state.isMobile === true) {
+      this.setState({ countUsers: 3, stepUsers: 3 });
+    }
+    API.fetchUsers(this.state.countUsers).then(response => {
+      console.log('users ', response);
+      this.setState({
+        users: response.data.users,
+        totalUsers: response.data.total_users,
+      });
     });
     API.fetchToken().then(res => {
       window.localStorage.setItem('token', JSON.stringify(res.data.token));
@@ -26,32 +38,76 @@ export default class Main extends Component {
     });
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.RegisterSuccess !== prevState.RegisterSuccess ||
+      this.state.countUsers !== prevState.countUsers
+    ) {
+      API.fetchUsers(this.state.countUsers).then(response => {
+        this.setState({
+          users: response.data.users,
+          totalUsers: response.data.total_users,
+        });
+      });
+    }
+  }
+
   handleRegister = data => {
     console.log(data);
-    API.addUser(data).then(res => {
-      console.log(res.data);
-      if (res.data.success) {
-        this.setState({ RegisterSuccess: true });
-      } else {
-        this.setState({ RegisterSuccess: false });
-      }
-    });
+    API.addUser(data)
+      .then(res => {
+        console.log(res.data);
+        if (res.data.success) {
+          this.setState({ RegisterSuccess: true });
+        } else {
+          this.setState({ RegisterError: true });
+        }
+      })
+      .catch(err => {
+        console.log(err);
+        if (err) {
+          this.setState({ RegisterError: true });
+        }
+      });
   };
 
-  handleModal = () => {
+  onHandleModal = () => {
     this.setState({ RegisterSuccess: false, RegisterError: false });
   };
 
+  handleIncreaseUsers = () => {
+    this.setState(prevState => ({
+      countUsers: prevState.countUsers + this.state.stepUsers,
+    }));
+  };
+
   render() {
-    const { users, positions, RegisterSuccess, RegisterError } = this.state;
+    console.log('render');
+    const {
+      users,
+      positions,
+      RegisterSuccess,
+      RegisterError,
+      countUsers,
+      totalUsers,
+    } = this.state;
     return (
       <main style={{ marginTop: '63px' }}>
         <AboutMe />
         <RelationshipsAndRequirements />
-        <Users users={users} />
+        <Users
+          users={users}
+          handleIncreaseUsers={this.handleIncreaseUsers}
+          countUsers={countUsers}
+          totalUsers={totalUsers}
+        />
         <Form positions={positions} onRegister={this.handleRegister} />
-        {RegisterSuccess && <Modal onModal={this.handleModal} />}
-        {RegisterError && <Modal onModal={this.handleModal} />}
+        {RegisterSuccess && (
+          <Modal onHandleModal={this.onHandleModal} message={successMessage} />
+        )}
+        {RegisterError && (
+          <Modal onHandleModal={this.onHandleModal} message={failMessage} />
+        )}
       </main>
     );
   }

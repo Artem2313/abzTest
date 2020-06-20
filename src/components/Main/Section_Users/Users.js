@@ -1,8 +1,12 @@
 import React from 'react';
 
-const Users = ({ users }) => (
+const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
   <section className="users-section">
     <div className="users-section__container">
+      <div>
+        <h1>Our cheerful users</h1>
+        <p>Attention! Sorting users by registration date</p>
+      </div>
       <ul className="users-section__list">
         {users.map(user => (
           <li className="users-section__profile-card" key={user.id}>
@@ -20,6 +24,16 @@ const Users = ({ users }) => (
           </li>
         ))}
       </ul>
+      <div>
+        <button
+          type="button"
+          className="button"
+          disabled={countUsers >= totalUsers}
+          onClick={() => handleIncreaseUsers()}
+        >
+          Show more
+        </button>
+      </div>
     </div>
   </section>
 );

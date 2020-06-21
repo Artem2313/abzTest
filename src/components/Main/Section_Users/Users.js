@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
 const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
   <section className="users-section">
@@ -15,12 +16,25 @@ const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
                 className="users-section__user-image"
                 src={user.photo}
                 alt={user.name}
+                data-tip={user.name}
               />
-              <p className="users-section__user-name">{user.name}</p>
-              <p className="users-section__user-position">{user.position}</p>
-              <p className="users-section__user-email">{user.email}</p>
-              <p className="users-section__user-phone">{user.phone}</p>
+              <p className="users-section__user-name" data-tip={user.name}>
+                {user.name}
+              </p>
+              <p
+                className="users-section__user-position"
+                data-tip={user.position}
+              >
+                {user.position}
+              </p>
+              <p className="users-section__user-email" data-tip={user.email}>
+                {user.email}{' '}
+              </p>
+              <p className="users-section__user-phone" data-tip={user.phone}>
+                {user.phone}
+              </p>
             </div>
+            <ReactTooltip place="bottom" />
           </li>
         ))}
       </ul>

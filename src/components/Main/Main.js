@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Element } from 'react-scroll';
 import AboutMe from './Section_About_Me/AboutMe';
 import RelationshipsAndRequirements from './Section_Relationships_and_Requirements/RelationshipsAndRequirements';
 import * as API from '../../service/api';
@@ -11,18 +12,14 @@ export default class Main extends Component {
   state = {
     users: [],
     positions: [],
-    countUsers: 6,
-    stepUsers: 6,
+    countUsers: window.innerWidth < 768 ? 3 : 6,
+    stepUsers: window.innerWidth < 768 ? 3 : 6,
     totalUsers: 0,
-    isMobile: window.innerWidth < 768,
     RegisterSuccess: false,
     RegisterError: false,
   };
 
   componentDidMount() {
-    if (this.state.isMobile === true) {
-      this.setState({ countUsers: 3, stepUsers: 3 });
-    }
     API.fetchUsers(this.state.countUsers).then(response => {
       console.log('users ', response);
       this.setState({
@@ -93,15 +90,23 @@ export default class Main extends Component {
     } = this.state;
     return (
       <main style={{ marginTop: '63px' }}>
-        <AboutMe />
-        <RelationshipsAndRequirements />
-        <Users
-          users={users}
-          handleIncreaseUsers={this.handleIncreaseUsers}
-          countUsers={countUsers}
-          totalUsers={totalUsers}
-        />
-        <Form positions={positions} onRegister={this.handleRegister} />
+        <Element name="About me">
+          <AboutMe />
+        </Element>
+        <Element name="Requirements">
+          <RelationshipsAndRequirements />
+        </Element>
+        <Element name="Users">
+          <Users
+            users={users}
+            handleIncreaseUsers={this.handleIncreaseUsers}
+            countUsers={countUsers}
+            totalUsers={totalUsers}
+          />
+        </Element>
+        <Element name="Sign up">
+          <Form positions={positions} onRegister={this.handleRegister} />
+        </Element>
         {RegisterSuccess && (
           <Modal onHandleModal={this.onHandleModal} message={successMessage} />
         )}

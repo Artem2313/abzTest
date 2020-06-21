@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import logo from '../../../assets/logo.svg';
 
@@ -14,19 +15,29 @@ const Toolbar = ({ drawerClickHandler }) => (
       <div className="toolbar__navigation-items">
         <ul>
           <li>
-            <a href="/">About me</a>
+            <Link to="About me" spy smooth>
+              About Me
+            </Link>
           </li>
           <li>
-            <a href="/">Relationships</a>
+            <Link to="Requirements" spy smooth>
+              Relationship
+            </Link>
           </li>
           <li>
-            <a href="/">Requirements</a>
+            <Link to="Requirements" spy smooth>
+              Requirements
+            </Link>
           </li>
           <li>
-            <a href="/">Users</a>
+            <Link to="Users" spy smooth>
+              Users
+            </Link>
           </li>
           <li>
-            <a href="/">Sign Up</a>
+            <Link to="Sign up" spy smooth>
+              Sign Up
+            </Link>
           </li>
         </ul>
       </div>

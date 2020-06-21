@@ -3,6 +3,7 @@ import Toolbar from './Header/Toolbar/Toolbar';
 import SideDrawer from './Header/SideDrawer/SideDrawer';
 import BackDrop from './Header/BackDrop/BackDrop';
 import Main from './Main/Main';
+import Footer from './Footer/Footer';
 
 export default class App extends Component {
   state = {
@@ -32,6 +33,7 @@ export default class App extends Component {
         <SideDrawer show={sideDrawerOpen} />
 
         <Main />
+        <Footer />
       </div>
     );
   }

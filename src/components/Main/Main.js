@@ -89,7 +89,7 @@ export default class Main extends Component {
       totalUsers,
     } = this.state;
     return (
-      <main style={{ marginTop: '63px' }}>
+      <main style={{ marginTop: '60px' }}>
         <Element name="About me">
           <AboutMe />
         </Element>

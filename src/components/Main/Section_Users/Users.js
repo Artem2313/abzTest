@@ -4,7 +4,7 @@ import ReactTooltip from 'react-tooltip';
 const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
   <section className="users-section">
     <div className="users-section__container">
-      <div>
+      <div className="users-section__header">
         <h1>Our cheerful users</h1>
         <p>Attention! Sorting users by registration date</p>
       </div>
@@ -18,9 +18,9 @@ const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
                 alt={user.name}
                 data-tip={user.name}
               />
-              <p className="users-section__user-name" data-tip={user.name}>
+              <h2 className="users-section__user-name" data-tip={user.name}>
                 {user.name}
-              </p>
+              </h2>
               <p
                 className="users-section__user-position"
                 data-tip={user.position}
@@ -38,16 +38,14 @@ const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
           </li>
         ))}
       </ul>
-      <div>
-        <button
-          type="button"
-          className="button"
-          disabled={countUsers >= totalUsers}
-          onClick={() => handleIncreaseUsers()}
-        >
-          Show more
-        </button>
-      </div>
+      <button
+        type="button"
+        className="button"
+        disabled={countUsers >= totalUsers}
+        onClick={() => handleIncreaseUsers()}
+      >
+        Show more
+      </button>
     </div>
   </section>
 );

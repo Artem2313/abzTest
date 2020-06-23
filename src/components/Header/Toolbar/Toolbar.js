@@ -16,12 +16,12 @@ const Toolbar = ({ drawerClickHandler }) => (
         <ul>
           <li>
             <Link to="About me" spy smooth>
-              About Me
+              About me
             </Link>
           </li>
           <li>
             <Link to="Requirements" spy smooth>
-              Relationship
+              Relationships
             </Link>
           </li>
           <li>

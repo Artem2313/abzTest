@@ -1,0 +1,44 @@
+.Register-section {
+  padding: 0 30px;
+  display: flex;
+  flex-wrap: wrap;
+
+  &__header {
+    outline: 1px solid green;
+    padding-bottom: 11px;
+
+    h1 {
+      padding-bottom: 18px;
+      text-align: center;
+    }
+
+    p {
+      text-align: center;
+      width: 65%;
+      outline: 1px solid red;
+    }
+  }
+
+
+
+  &__form-main {
+    outline: 1px solid red;
+    width: 50%;
+
+    input,
+    label {
+      display: block;
+    }
+
+  }
+
+  &__form-main-label {
+    padding-bottom: 10px;
+  }
+
+  &__form-main-input {
+    width: 100%;
+    height: 38px;
+    margin-bottom: 20px;
+  }
+}

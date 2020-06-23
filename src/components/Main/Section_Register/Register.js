@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Form from '../../shared/Form';
-import Label from '../../shared/Label';
 
 export default class Register extends Component {
   state = {
@@ -52,48 +51,52 @@ export default class Register extends Component {
       <section className="Register-section">
         <div className="Register-section__header">
           <h1>Register to get a work</h1>
-          <p>Attention! After successful...</p>
+          <p>
+            Attention! After successful registration and alert, update the list
+            of users in the block from the top
+          </p>
         </div>
-        <Form onSubmit={this.handleSubmit}>
-          <div>
-            <Label>
-              Name
+        <Form onSubmit={this.handleSubmit} className="Register-section__form">
+          <div className="Register-section__form-main">
+            <div>
+              <label className="Register-section__form-main-label">Name</label>
               <input
                 type="text"
                 name="name"
                 value={name}
                 onChange={this.handleChange}
+                className="Register-section__form-main-input"
               />
-            </Label>
-          </div>
-          <div>
-            <Label>
-              Email
+            </div>
+            <div>
+              <label className="Register-section__form-main-label">Email</label>
               <input
                 type="email"
                 name="email"
                 value={email}
                 onChange={this.handleChange}
+                className="Register-section__form-main-input"
               />
-            </Label>
-          </div>
-          <div>
-            <Label>
-              Phone number
+            </div>
+            <div>
+              <label className="Register-section__form-main-label">
+                Phone number
+              </label>
               <input
                 type="text"
                 name="phone"
                 value={phone}
                 onChange={this.handleChange}
+                className="Register-section__form-main-input"
               />
-            </Label>
+            </div>
           </div>
           <div>
-            <Label>Select your option</Label>
+            <label>Select your option</label>
             <div>
               {positions.map(position => (
                 <div key={position.id}>
-                  <Label>
+                  <label>
                     <input
                       type="radio"
                       name={position.id}
@@ -102,20 +105,20 @@ export default class Register extends Component {
                       onChange={this.handleOptionChange}
                     />
                     {position.name}
-                  </Label>
+                  </label>
                 </div>
               ))}
             </div>
           </div>
           <div>
-            <Label>
+            <label>
               Photo
               <input
                 type="file"
                 name="photo"
                 onChange={this.handlePhotoChange}
               />
-            </Label>
+            </label>
           </div>
           <button type="submit">Sing up now</button>
         </Form>

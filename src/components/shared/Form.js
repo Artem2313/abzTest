@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 16px;
   width: 100%;
   border-radius: 2px;
   box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),

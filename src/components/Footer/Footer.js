@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => (
   <footer>
-    <p>ABZ Test</p>
+    <p>© abz.agency specially for the test task</p>
   </footer>
 );
 

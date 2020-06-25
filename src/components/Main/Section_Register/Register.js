@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Form from '../../shared/Form';
 
 export default class Register extends Component {
   state = {
@@ -45,7 +44,7 @@ export default class Register extends Component {
   };
 
   render() {
-    const { name, position_id, email, phone } = this.state;
+    const { name, position_id, email, phone, photo } = this.state;
     const { positions } = this.props;
     return (
       <section className="Register-section">
@@ -56,19 +55,24 @@ export default class Register extends Component {
             of users in the block from the top
           </p>
         </div>
-        <Form onSubmit={this.handleSubmit} className="Register-section__form">
+        <form onSubmit={this.handleSubmit} className="Register-section__form">
           <div className="Register-section__form-main">
-            <div>
+            <div className="Register-section__form-main-element">
               <label className="Register-section__form-main-label">Name</label>
+
               <input
                 type="text"
                 name="name"
                 value={name}
                 onChange={this.handleChange}
                 className="Register-section__form-main-input"
+                placeholder="Your name"
               />
+              <div className="Register-section__after-input">
+                Enter your name
+              </div>
             </div>
-            <div>
+            <div className="Register-section__form-main-element">
               <label className="Register-section__form-main-label">Email</label>
               <input
                 type="email"
@@ -76,9 +80,13 @@ export default class Register extends Component {
                 value={email}
                 onChange={this.handleChange}
                 className="Register-section__form-main-input"
+                placeholder="Your email"
               />
+              <div className="Register-section__after-input">
+                Enter your name
+              </div>
             </div>
-            <div>
+            <div className="Register-section__form-main-element">
               <label className="Register-section__form-main-label">
                 Phone number
               </label>
@@ -88,14 +96,23 @@ export default class Register extends Component {
                 value={phone}
                 onChange={this.handleChange}
                 className="Register-section__form-main-input"
+                placeholder="+380"
               />
+              <div className="Register-section__after-input">
+                Enter your phone number in open format
+              </div>
             </div>
           </div>
-          <div>
-            <label>Select your option</label>
+          <div className="Register-section__select">
+            <label className="Register-section__select-header">
+              Select your position
+            </label>
             <div>
               {positions.map(position => (
-                <div key={position.id}>
+                <div
+                  className="Register-section__select-position"
+                  key={position.id}
+                >
                   <label>
                     <input
                       type="radio"
@@ -104,24 +121,36 @@ export default class Register extends Component {
                       checked={position.id === position_id}
                       onChange={this.handleOptionChange}
                     />
-                    {position.name}
+                    <span>{position.name}</span>
                   </label>
                 </div>
               ))}
             </div>
           </div>
-          <div>
-            <label>
-              Photo
+          <div className="Register-section__photo-container">
+            <label className="Register-section__photo-label">Photo</label>
+            <div className="Register-section__photo-input">
+              <label htmlFor="file-upload" className="custom-file-upload">
+                {photo ? photo.name : <span>Upload your photo</span>}
+              </label>
+
+              <label htmlFor="file-upload" className="custom-file-browse">
+                Browse
+              </label>
+
               <input
                 type="file"
                 name="photo"
+                id="file-upload"
                 onChange={this.handlePhotoChange}
+                className="Register-section__photo-input"
               />
-            </label>
+            </div>
           </div>
-          <button type="submit">Sing up now</button>
-        </Form>
+          <button type="submit" className="button">
+            Sing up now
+          </button>
+        </form>
       </section>
     );
   }

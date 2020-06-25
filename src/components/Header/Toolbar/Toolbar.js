@@ -7,9 +7,9 @@ const Toolbar = ({ drawerClickHandler }) => (
   <header className="toolbar container">
     <nav className="toolbar__navigation">
       <div className="toolbar__logo">
-        <a href="/">
+        <Link to="About me" spy smooth>
           <img src={logo} height="100%" alt="logo" />
-        </a>
+        </Link>
       </div>
       <div className="spacer" />
       <div className="toolbar__navigation-items">

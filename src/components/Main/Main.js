@@ -20,8 +20,8 @@ export default class Main extends Component {
   };
 
   componentDidMount() {
-    API.fetchUsers(this.state.countUsers).then(response => {
-      console.log('users ', response);
+    const { countUsers } = this.state;
+    API.fetchUsers(countUsers).then(response => {
       this.setState({
         users: response.data.users,
         totalUsers: response.data.total_users,
@@ -36,11 +36,12 @@ export default class Main extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const { RegisterSuccess, countUsers } = this.state;
     if (
-      this.state.RegisterSuccess !== prevState.RegisterSuccess ||
-      this.state.countUsers !== prevState.countUsers
+      RegisterSuccess !== prevState.RegisterSuccess ||
+      countUsers !== prevState.countUsers
     ) {
-      API.fetchUsers(this.state.countUsers).then(response => {
+      API.fetchUsers(countUsers).then(response => {
         this.setState({
           users: response.data.users,
           totalUsers: response.data.total_users,
@@ -50,10 +51,8 @@ export default class Main extends Component {
   }
 
   handleRegister = data => {
-    console.log(data);
     API.addUser(data)
       .then(res => {
-        console.log(res.data);
         if (res.data.success) {
           this.setState({ RegisterSuccess: true });
         } else {
@@ -61,7 +60,6 @@ export default class Main extends Component {
         }
       })
       .catch(err => {
-        console.log(err);
         if (err) {
           this.setState({ RegisterError: true });
         }
@@ -73,13 +71,13 @@ export default class Main extends Component {
   };
 
   handleIncreaseUsers = () => {
+    const { stepUsers } = this.state;
     this.setState(prevState => ({
-      countUsers: prevState.countUsers + this.state.stepUsers,
+      countUsers: prevState.countUsers + stepUsers,
     }));
   };
 
   render() {
-    console.log('render');
     const {
       users,
       positions,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import { ReactComponent as Man } from '../../../assets/man-laptop-v1.svg';
 
 import { mainTitle, title, paragraph1, paragraph2 } from './Relationship.json';
@@ -15,7 +16,9 @@ const RelationshipsAndRequirements = () => (
           <p>{paragraph1}</p>
           <p>{paragraph2}</p>
           <button type="button" className="button">
-            Sign up now
+            <Link to="Sign up" spy smooth>
+              Sign up now
+            </Link>
           </button>
         </div>
       </div>

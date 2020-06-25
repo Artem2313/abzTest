@@ -10,6 +10,10 @@
     align-items: center;
     align-content: center;
     height: 100%;
+
+    img {
+      cursor: pointer;
+    }
   }
 
 
@@ -21,6 +25,10 @@
       padding-top: 1.4rem;
       padding-right: 12.2px;
       padding-bottom: 21px;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     ul {

@@ -1,12 +1,17 @@
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 
 export default class Register extends Component {
   state = {
     position_id: 1,
     name: '',
+    nameError: '',
     email: '',
+    emailError: '',
     phone: '',
+    phoneError: '',
     photo: null,
+    photoError: '',
   };
 
   handleChange = e => {
@@ -21,6 +26,56 @@ export default class Register extends Component {
     this.setState({ photo: e.target.files[0] });
   };
 
+  validate = () => {
+    let isError = false;
+    const { name, email, phone, photo } = this.state;
+
+    const errors = {
+      nameError: '',
+      emailError: '',
+      phoneError: '',
+      photoError: '',
+    };
+
+    if (name.length < 6) {
+      isError = true;
+      errors.nameError = 'Username needs to be atleast 6 characters long';
+    }
+
+    if (email.indexOf('@') === -1) {
+      isError = true;
+      errors.emailError = 'Requires valid email';
+    }
+
+    if (phone.length !== 13) {
+      isError = true;
+      errors.phoneError = 'Number must consists of 13 digits';
+    }
+
+    if (phone.slice(0, 4) !== '+380') {
+      isError = true;
+      errors.phoneError = 'Number must start with +380';
+    }
+
+    if (photo === null) {
+      isError = true;
+      errors.photoError = 'Needs photo';
+    } else if (photo.type !== 'image/jpeg') {
+      isError = true;
+      errors.photoError = 'Photo needs to be in jpeg format';
+    } else if (photo.size > 5242880) {
+      isError = true;
+      errors.phoneError = 'Photo should be less than 5 mb';
+    }
+
+    this.setState(prevState => ({
+      ...prevState,
+      ...errors,
+    }));
+
+    return isError;
+  };
+
   handleSubmit = e => {
     e.preventDefault();
 
@@ -33,18 +88,38 @@ export default class Register extends Component {
       phone,
       photo,
     };
-    onRegister(data);
-    this.setState({
-      position_id: 1,
-      name: '',
-      email: '',
-      phone: '',
-      photo: null,
-    });
+
+    const err = this.validate();
+
+    if (!err) {
+      onRegister(data);
+
+      this.setState({
+        position_id: 1,
+        name: '',
+        nameError: '',
+        email: '',
+        emailError: '',
+        phone: '',
+        phoneError: '',
+        photo: null,
+        photoError: '',
+      });
+    }
   };
 
   render() {
-    const { name, position_id, email, phone, photo } = this.state;
+    const {
+      name,
+      position_id,
+      email,
+      phone,
+      photo,
+      nameError,
+      emailError,
+      phoneError,
+      photoError,
+    } = this.state;
     const { positions } = this.props;
     return (
       <section className="Register-section">
@@ -71,6 +146,7 @@ export default class Register extends Component {
               <div className="Register-section__after-input">
                 Enter your name
               </div>
+              {nameError && <div className="error-message">{nameError}</div>}
             </div>
             <div className="Register-section__form-main-element">
               <label className="Register-section__form-main-label">Email</label>
@@ -83,8 +159,9 @@ export default class Register extends Component {
                 placeholder="Your email"
               />
               <div className="Register-section__after-input">
-                Enter your name
+                Enter your email
               </div>
+              {emailError && <div className="error-message">{emailError}</div>}
             </div>
             <div className="Register-section__form-main-element">
               <label className="Register-section__form-main-label">
@@ -101,6 +178,7 @@ export default class Register extends Component {
               <div className="Register-section__after-input">
                 Enter your phone number in open format
               </div>
+              {phoneError && <div className="error-message">{phoneError}</div>}
             </div>
           </div>
           <div className="Register-section__select">
@@ -146,6 +224,7 @@ export default class Register extends Component {
                 className="Register-section__photo-input"
               />
             </div>
+            {photoError && <div className="error-message">{photoError}</div>}
           </div>
           <button type="submit" className="button">
             Sing up now

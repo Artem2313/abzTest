@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import { title, textDesktop, textMobile } from './AboutMeText.json';
 import './AboutMe.scss';
 
@@ -8,9 +9,11 @@ const AboutMe = () => (
       <h1>{title}</h1>
       <p className="desktop">{textDesktop}</p>
       <p className="mobile">{textMobile}</p>
-      <button type="button" className="button aboutme__button">
-        Sign up now
-      </button>
+      <Link to="Sign up" spy smooth className="aboutme__button">
+        <button type="button" className="button">
+          Sign up now
+        </button>
+      </Link>
     </div>
   </section>
 );

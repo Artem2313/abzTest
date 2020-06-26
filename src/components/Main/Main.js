@@ -17,22 +17,31 @@ export default class Main extends Component {
     totalUsers: 0,
     RegisterSuccess: false,
     RegisterError: false,
+    fetchUsersError: '',
+    fetchTokenError: '',
+    fetchPositionsError: '',
   };
 
   componentDidMount() {
     const { countUsers } = this.state;
-    API.fetchUsers(countUsers).then(response => {
-      this.setState({
-        users: response.data.users,
-        totalUsers: response.data.total_users,
-      });
-    });
-    API.fetchToken().then(res => {
-      window.localStorage.setItem('token', JSON.stringify(res.data.token));
-    });
-    API.fetchPositions().then(res => {
-      this.setState({ positions: res.data.positions });
-    });
+    API.fetchUsers(countUsers)
+      .then(response => {
+        this.setState({
+          users: response.data.users,
+          totalUsers: response.data.total_users,
+        });
+      })
+      .catch(error => this.setState({ fetchUsersError: error.message }));
+    API.fetchToken()
+      .then(res => {
+        window.localStorage.setItem('token', JSON.stringify(res.data.token));
+      })
+      .catch(error => this.setState({ fetchTokenError: error.message }));
+    API.fetchPositions()
+      .then(res => {
+        this.setState({ positions: res.data.positions });
+      })
+      .catch(error => this.setState({ fetchPositionsError: error.message }));
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -45,7 +54,7 @@ export default class Main extends Component {
         this.setState({
           users: response.data.users,
           totalUsers: response.data.total_users,
-        });
+        }).catch(error => this.setState({ fetchUsersError: error.message }));
       });
     }
   }
@@ -85,6 +94,9 @@ export default class Main extends Component {
       RegisterError,
       countUsers,
       totalUsers,
+      fetchUsersError,
+      fetchTokenError,
+      fetchPositionsError,
     } = this.state;
     return (
       <main style={{ marginTop: '60px' }}>
@@ -100,10 +112,16 @@ export default class Main extends Component {
             handleIncreaseUsers={this.handleIncreaseUsers}
             countUsers={countUsers}
             totalUsers={totalUsers}
+            fetchUsersError={fetchUsersError}
           />
         </Element>
         <Element name="Sign up">
-          <Form positions={positions} onRegister={this.handleRegister} />
+          <Form
+            positions={positions}
+            onRegister={this.handleRegister}
+            fetchTokenError={fetchTokenError}
+            fetchPositionsError={fetchPositionsError}
+          />
         </Element>
         {RegisterSuccess && (
           <Modal onHandleModal={this.onHandleModal} message={successMessage} />

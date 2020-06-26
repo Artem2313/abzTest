@@ -120,7 +120,7 @@ export default class Register extends Component {
       phoneError,
       photoError,
     } = this.state;
-    const { positions } = this.props;
+    const { positions, fetchTokenError, fetchPositionsError } = this.props;
     return (
       <section className="Register-section">
         <div className="Register-section__header">

@@ -1,7 +1,13 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
 
-const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
+const Users = ({
+  users,
+  handleIncreaseUsers,
+  countUsers,
+  totalUsers,
+  fetchUsersError,
+}) => (
   <section className="users-section">
     <div className="users-section__container">
       <div className="users-section__header">
@@ -9,6 +15,9 @@ const Users = ({ users, handleIncreaseUsers, countUsers, totalUsers }) => (
         <p>Attention! Sorting users by registration date</p>
       </div>
       <ul className="users-section__list">
+        {fetchUsersError && (
+          <div style={{ color: 'red' }}>{fetchUsersError}</div>
+        )}
         {users.map(user => (
           <li className="users-section__profile-card" key={user.id}>
             <div className="users-section__user-container">

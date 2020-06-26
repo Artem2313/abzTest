@@ -1,16 +1,22 @@
 .users-section {
-  padding-bottom: 235px;
-  outline: 1px solid orange;
+
+  padding-bottom: 150px;
+
+
+
+  @media (max-width: 768px) {
+    padding-top: 150px;
+  }
 
   &__container {
     padding: 75px 30px;
-    outline: 1px solid red;
     background-color: $background-color-2;
     display: flex;
     flex-wrap: wrap;
 
     @media (min-width: 768px) {
       padding: 75px 16px;
+
 
     }
 
@@ -39,8 +45,8 @@
   }
 
   &__profile-card {
-    outline: 1px solid green;
-    padding-bottom: 60px;
+    padding-bottom: 30px;
+    width: 100%;
 
 
     @media (min-width: 768px) {
@@ -61,7 +67,6 @@
   &__user-container {
     display: flex;
     flex-direction: column;
-    outline: 1px solid orange;
     height: 100%;
     max-width: 210px;
 
@@ -77,4 +82,7 @@
     border-radius: 50%;
   }
 
+  p {
+    padding: 5px 0;
+  }
 }

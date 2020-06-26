@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-scroll';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
 const SideDrawer = ({ show }) => {
@@ -18,57 +19,117 @@ const SideDrawer = ({ show }) => {
       <div>
         <ul>
           <li>
-            <a href="/">About me</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                About me
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Relationships</a>
+            <span>
+              <Link to="Requirements" spy smooth>
+                Relationships
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Users</a>
+            <span>
+              <Link to="Users" spy smooth>
+                Users
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Sign Up</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Sign Up
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Terms and Conditions</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Terms and Conditions
+              </Link>
+            </span>
           </li>
         </ul>
       </div>
       <div>
         <ul>
           <li>
-            <a href="/">How it works</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                How it works
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Partnership</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Partnership
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Help</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Help
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Leave testimonials</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Leave testimonials
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Contact us</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Contact us
+              </Link>
+            </span>
           </li>
         </ul>
       </div>
       <div>
         <ul>
           <li>
-            <a href="/">Articles</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Articles
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Our news</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Our news
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Testimonials</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Testimonials
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Licenses</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Licenses
+              </Link>
+            </span>
           </li>
           <li>
-            <a href="/">Privacy Policy</a>
+            <span>
+              <Link to="Sign up" spy smooth>
+                Privacy Policy
+              </Link>
+            </span>
           </li>
         </ul>
       </div>

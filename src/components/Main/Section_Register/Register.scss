@@ -4,18 +4,24 @@
   flex-wrap: wrap;
 
   &__header {
-    outline: 1px solid green;
     padding-bottom: 11px;
 
     h1 {
       padding-bottom: 18px;
       text-align: center;
+
+      @media (max-width: 767px) {
+        font-size: 29px;
+      }
     }
 
     p {
       text-align: center;
       width: 65%;
-      outline: 1px solid red;
+
+      @media (max-width: 767px) {
+        width: 100%;
+      }
     }
   }
 
@@ -27,12 +33,16 @@
     border-radius: 2%;
     font-family: 'PT Sans';
 
+    @media (max-width: 767px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
   }
 
   //form-main
 
   &__form-main {
-    outline: 1px solid red;
     width: 50%;
     padding-bottom: 23px;
 
@@ -44,8 +54,16 @@
 
     input:focus+.Register-section__after-input {
       display: block;
+
     }
 
+    @media (max-width: 1023px) {
+      width: 70%;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
 
 
   }
@@ -73,8 +91,15 @@
   //form select
   &__select {
     width: 50%;
-    outline: 1px solid green;
     padding-bottom: 10px;
+
+    @media (max-width: 1023px) {
+      width: 70%;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 
   &__select-header {
@@ -93,11 +118,18 @@
   }
 
   &__photo-container {
-    outline: 1px solid orange;
     width: 50%;
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 37px;
+
+    @media (max-width: 1023px) {
+      width: 70%;
+    }
+
+    @media (max-width: 767px) {
+      width: 100%;
+    }
   }
 
   &__photo-label,
@@ -133,6 +165,10 @@
   width: 83%;
   border-top-left-radius: 5%;
   border-bottom-left-radius: 5%;
+
+  @media (max-width: 767px) {
+    width: 75%;
+  }
 }
 
 .custom-file-upload>span {
@@ -144,6 +180,10 @@
   background-color: #f8f7f5;
   border-top-right-radius: 5%;
   border-bottom-right-radius: 5%;
+
+  @media (max-width: 767px) {
+    width: 25%;
+  }
 }
 
 .error-message {

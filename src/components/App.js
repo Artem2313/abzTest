@@ -23,10 +23,6 @@ export default class App extends Component {
   render() {
     console.log(window.devicePixelRatio);
     const { sideDrawerOpen } = this.state;
-    // if (sideDrawerOpen) {
-    //   let SideDrawer = <SideDrawer />;
-    //   let BackDrop = <BackDrop />;
-    // }
     return (
       <div className="wrapper">
         <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />

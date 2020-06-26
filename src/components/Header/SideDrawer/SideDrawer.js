@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
+import PropTypes from 'prop-types';
 import { ReactComponent as Logo } from '../../../assets/logo.svg';
 
 const SideDrawer = ({ show }) => {
@@ -138,3 +139,7 @@ const SideDrawer = ({ show }) => {
 };
 
 export default SideDrawer;
+
+SideDrawer.propTypes = {
+  show: PropTypes.bool.isRequired,
+};

@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Register extends Component {
   state = {
@@ -186,6 +187,9 @@ export default class Register extends Component {
               Select your position
             </label>
             <div>
+              {fetchPositionsError && (
+                <div>{fetchPositionsError} + Positions were not found</div>
+              )}
               {positions.map(position => (
                 <div
                   className="Register-section__select-position"
@@ -229,8 +233,21 @@ export default class Register extends Component {
           <button type="submit" className="button">
             Sing up now
           </button>
+          {fetchTokenError && <div>{fetchTokenError} + TokenError</div>}
         </form>
       </section>
     );
   }
 }
+
+Register.defaultProps = {
+  fetchTokenError: '',
+  fetchPositionsError: '',
+};
+
+Register.propTypes = {
+  onRegister: PropTypes.func.isRequired,
+  positions: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  fetchTokenError: PropTypes.string,
+  fetchPositionsError: PropTypes.string,
+};

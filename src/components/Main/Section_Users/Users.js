@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactTooltip from 'react-tooltip';
+import PropTypes from 'prop-types';
 
 const Users = ({
   users,
@@ -60,3 +61,15 @@ const Users = ({
 );
 
 export default Users;
+
+Users.defaultProps = {
+  fetchUsersError: '',
+};
+
+Users.propTypes = {
+  users: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+  handleIncreaseUsers: PropTypes.func.isRequired,
+  countUsers: PropTypes.number.isRequired,
+  totalUsers: PropTypes.number.isRequired,
+  fetchUsersError: PropTypes.string,
+};

@@ -1,13 +1,20 @@
 import React, { Component, createRef } from 'react';
+import PropTypes from 'prop-types';
 
 export default class Modal extends Component {
-  state = {
-    title: this.props.message.title,
-    body: this.props.message.body,
-    button: this.props.message.button,
-  };
-
   backdropRef = createRef();
+
+  constructor(props) {
+    super(props);
+
+    const { title, body, button } = props.message;
+
+    this.state = {
+      title,
+      body,
+      button,
+    };
+  }
 
   componentDidMount() {
     window.addEventListener('keydown', this.handleKeyPress);
@@ -22,14 +29,14 @@ export default class Modal extends Component {
     if (current && e.target !== current) {
       return;
     }
-
-    this.props.onHandleModal();
+    const { onHandleModal } = this.props;
+    onHandleModal();
   };
 
   handleKeyPress = e => {
     if (e.code !== 'Escape') return;
-
-    this.props.onHandleModal();
+    const { onHandleModal } = this.props;
+    onHandleModal();
   };
 
   render() {
@@ -70,3 +77,12 @@ export default class Modal extends Component {
     );
   }
 }
+
+Modal.propTypes = {
+  onHandleModal: PropTypes.func.isRequired,
+  message: PropTypes.shape({
+    body: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    button: PropTypes.string.isRequired,
+  }).isRequired,
+};

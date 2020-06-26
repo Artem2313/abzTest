@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-scroll';
+import PropTypes from 'prop-types';
 import DrawerToggleButton from '../SideDrawer/DrawerToggleButton';
 import logo from '../../../assets/logo.svg';
 
@@ -49,3 +50,7 @@ const Toolbar = ({ drawerClickHandler }) => (
 );
 
 export default Toolbar;
+
+Toolbar.propTypes = {
+  drawerClickHandler: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ReactComponent as Menu } from '../../../assets/menu icon.svg';
 
 const DrawerToggleButton = ({ click }) => (
@@ -8,3 +9,7 @@ const DrawerToggleButton = ({ click }) => (
 );
 
 export default DrawerToggleButton;
+
+DrawerToggleButton.propTypes = {
+  click: PropTypes.func.isRequired,
+};

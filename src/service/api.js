@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchUsers = countUsers => {
   return axios.get(
-    `https://frontend-test-assignment-api.ab.agency/api/v1/users?page=1&count=${countUsers}`,
+    `https://frontend-test-assignment-api.abz.agency/api/v1/users?page=1&count=${countUsers}`,
   );
 };
 

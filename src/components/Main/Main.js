@@ -1,12 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component, lazy, Suspense } from 'react';
 import { Element } from 'react-scroll';
-import AboutMe from './Section_About_Me/AboutMe';
 import RelationshipsAndRequirements from './Section_Relationships_and_Requirements/RelationshipsAndRequirements';
 import * as API from '../../service/api';
-import Users from './Section_Users/Users';
-import Form from './Section_Register/Register';
-import Modal from '../shared/Modal';
 import { successMessage, failMessage } from '../shared/Modal.json';
+
+const LazyAboutMe = lazy(() =>
+  import('./Section_About_Me/AboutMe' /* webpackChunkName: "AboutMe" */),
+);
+
+const LazyUsers = lazy(() =>
+  import('./Section_Users/Users' /* webpackChunkName: "Users" */),
+);
+
+const LazyForm = lazy(() =>
+  import('./Section_Register/Register' /* webpackChunkName: "Form" */),
+);
+
+const LazyModal = lazy(() =>
+  import('../shared/Modal' /* webpackChunkName: "Modal" */),
+);
 
 export default class Main extends Component {
   state = {
@@ -100,35 +112,43 @@ export default class Main extends Component {
     } = this.state;
     return (
       <main style={{ marginTop: '60px' }}>
-        <Element name="About me">
-          <AboutMe />
-        </Element>
-        <Element name="Requirements">
-          <RelationshipsAndRequirements />
-        </Element>
-        <Element name="Users">
-          <Users
-            users={users}
-            handleIncreaseUsers={this.handleIncreaseUsers}
-            countUsers={countUsers}
-            totalUsers={totalUsers}
-            fetchUsersError={fetchUsersError}
-          />
-        </Element>
-        <Element name="Sign up">
-          <Form
-            positions={positions}
-            onRegister={this.handleRegister}
-            fetchTokenError={fetchTokenError}
-            fetchPositionsError={fetchPositionsError}
-          />
-        </Element>
-        {RegisterSuccess && (
-          <Modal onHandleModal={this.onHandleModal} message={successMessage} />
-        )}
-        {RegisterError && (
-          <Modal onHandleModal={this.onHandleModal} message={failMessage} />
-        )}
+        <Suspense fallback={<h1>...Loading</h1>}>
+          <Element name="About me">
+            <LazyAboutMe />
+          </Element>
+          <Element name="Requirements">
+            <RelationshipsAndRequirements />
+          </Element>
+          <Element name="Users">
+            <LazyUsers
+              users={users}
+              handleIncreaseUsers={this.handleIncreaseUsers}
+              countUsers={countUsers}
+              totalUsers={totalUsers}
+              fetchUsersError={fetchUsersError}
+            />
+          </Element>
+          <Element name="Sign up">
+            <LazyForm
+              positions={positions}
+              onRegister={this.handleRegister}
+              fetchTokenError={fetchTokenError}
+              fetchPositionsError={fetchPositionsError}
+            />
+          </Element>
+          {RegisterSuccess && (
+            <LazyModal
+              onHandleModal={this.onHandleModal}
+              message={successMessage}
+            />
+          )}
+          {RegisterError && (
+            <LazyModal
+              onHandleModal={this.onHandleModal}
+              message={failMessage}
+            />
+          )}
+        </Suspense>
       </main>
     );
   }

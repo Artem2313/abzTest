@@ -1,13 +1,24 @@
-import React from 'react';
-import Header from './Header/Header';
-import Main from './Main/Main';
-import Footer from './Footer/Footer';
+import React, { lazy, Suspense } from 'react';
+
+const LazyHeader = lazy(() =>
+  import('./Header/Header' /* webpackChunkName: "Header" */),
+);
+
+const LazyMain = lazy(() =>
+  import('./Main/Main' /* webpackChunkName: "Main" */),
+);
+
+const LazyFooter = lazy(() =>
+  import('./Footer/Footer' /* webpackChunkName: "Footer" */),
+);
 
 const App = () => (
   <div className="wrapper">
-    <Header />
-    <Main />
-    <Footer />
+    <Suspense fallback={<h1>...Loading</h1>}>
+      <LazyHeader />
+      <LazyMain />
+      <LazyFooter />
+    </Suspense>
   </div>
 );
 

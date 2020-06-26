@@ -1,38 +1,25 @@
-import React, { Component } from 'react';
-import Toolbar from './Toolbar/Toolbar';
-import SideDrawer from './SideDrawer/SideDrawer';
-import BackDrop from './BackDrop/BackDrop';
+import React, { lazy, Suspense } from 'react';
 
-export default class App extends Component {
-  state = {
-    sideDrawerOpen: false,
-  };
+const LazyHeader = lazy(() =>
+  import('./Header/Header' /* webpackChunkName: "Header" */),
+);
 
-  drawerToggleClickHandler = () => {
-    this.setState(prevState => ({
-      sideDrawerOpen: !prevState.sideDrawerOpen,
-    }));
-  };
+const LazyMain = lazy(() =>
+  import('./Main/Main' /* webpackChunkName: "Main" */),
+);
 
-  backDropClickHandler = () => {
-    this.setState({ sideDrawerOpen: false });
-  };
+const LazyFooter = lazy(() =>
+  import('./Footer/Footer' /* webpackChunkName: "Footer" */),
+);
 
-  render() {
-    const { sideDrawerOpen } = this.state;
-    // if (sideDrawerOpen) {
-    //   let SideDrawer = <SideDrawer />;
-    //   let BackDrop = <BackDrop />;
-    // }
-    return (
-      <div style={{ height: '100%' }}>
-        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
-        {sideDrawerOpen && <BackDrop click={this.backDropClickHandler} />}
-        <SideDrawer show={sideDrawerOpen} />
-        <main style={{ marginTop: '63px' }}>
-          <p>This is page content</p>
-        </main>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div className="wrapper">
+    <Suspense fallback={<h1>...Loading</h1>}>
+      <LazyHeader />
+      <LazyMain />
+      <LazyFooter />
+    </Suspense>
+  </div>
+);
+
+export default App;

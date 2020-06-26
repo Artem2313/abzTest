@@ -1,6 +1,10 @@
 import React from 'react';
-import './BackDrop.css';
+import PropTypes from 'prop-types';
 
 const BackDrop = ({ click }) => <div className="backdrop" onClick={click} />;
 
 export default BackDrop;
+
+BackDrop.propTypes = {
+  click: PropTypes.func.isRequired,
+};

@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{70:function(e,n,t){"use strict";t.r(n);var a=t(0),c=t.n(a);n.default=function(){return c.a.createElement("footer",null,c.a.createElement("p",null,"\xa9 abz.agency specially for the test task"))}}}]);
+//# sourceMappingURL=Footer.afce32c1.chunk.js.map
